@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b7tfx008pvdr7"
+path="res://.godot/imported/Semnopithecus-entellus_USNM-49779_lm2_60_0.55_-0.58.obj-40a1edbf51bae6f0e7f8a7eef597eeef.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Semnopithecus-entellus_USNM-49779_lm2_60_0.55_-0.58.obj-40a1edbf51bae6f0e7f8a7eef597eeef.mesh"]
+
+source_file="res://Assets/Semnopithecus-entellus_USNM-49779_lm2_60_0.55_-0.58.obj"
+dest_files=["res://.godot/imported/Semnopithecus-entellus_USNM-49779_lm2_60_0.55_-0.58.obj-40a1edbf51bae6f0e7f8a7eef597eeef.mesh", "res://.godot/imported/Semnopithecus-entellus_USNM-49779_lm2_60_0.55_-0.58.obj-40a1edbf51bae6f0e7f8a7eef597eeef.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

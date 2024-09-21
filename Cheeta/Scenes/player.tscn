@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://6fv002hffeil"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_d4qp1"]
+
+[node name="player" type="Node3D"]
+script = ExtResource("1_d4qp1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -0.00012815, 0.387113, 0.676784)
+current = true
+
+[node name="Marker3D" type="CSGSphere3D" parent="."]
+radius = 0.05

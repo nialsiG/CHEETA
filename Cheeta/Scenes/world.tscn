@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpjoefpe0kold"]
+
+[ext_resource type="ArrayMesh" uid="uid://dmuwmwc8aoq4" path="res://Assets/Semnopithecus-entellus_USNM-49779_um2_60_0.55_-0.58.obj" id="1_y03pa"]
+[ext_resource type="PackedScene" uid="uid://6fv002hffeil" path="res://Scenes/player.tscn" id="2_llk3r"]
+[ext_resource type="ArrayMesh" uid="uid://b7tfx008pvdr7" path="res://Assets/Semnopithecus-entellus_USNM-49779_lm2_60_0.55_-0.58.obj" id="3_ptly3"]
+
+[node name="world" type="Node3D"]
+transform = Transform3D(1, -0.000393621, 0.000378934, 0.000393996, 0.999999, -0.0010338, -0.000378543, 0.00103395, 0.999999, 0, 0, 0)
+
+[node name="teeth" type="Node3D" parent="."]
+transform = Transform3D(1, -1.70814e-11, 2.91038e-11, -7.61702e-12, 1, 0, -2.91038e-11, 0, 1, -2.73174, -2.32831e-10, 1.10961)
+
+[node name="upper" type="Node3D" parent="teeth"]
+
+[node name="Semnopithecus-entellusUsnm-49779Um2600_55-0_59" type="MeshInstance3D" parent="teeth/upper"]
+transform = Transform3D(0.999999, 2.32831e-10, 1.05501e-10, -9.48432e-11, -0.0488497, -0.998805, -1.16415e-10, 0.998806, -0.0488497, 1.57651, 4.84642, -0.744371)
+mesh = ExtResource("1_y03pa")
+skeleton = NodePath("../../..")
+
+[node name="lower" type="Node3D" parent="teeth"]
+
+[node name="Semnopithecus-entellusUsnm-49779Lm2600_55-0_58" type="MeshInstance3D" parent="teeth/lower"]
+transform = Transform3D(-0.99958, -0.000601023, -0.0289465, -0.0289465, 0.0414938, 0.998719, 0.000600874, 0.999138, -0.0414938, 3.89618, -0.00452646, -2.89356)
+mesh = ExtResource("3_ptly3")
+skeleton = NodePath("../../..")
+
+[node name="player" parent="." instance=ExtResource("2_llk3r")]
+transform = Transform3D(1, -1.33412e-10, 1.16415e-10, -6.57963e-11, 1, 0, -8.73115e-11, 0, 1, 0.00469702, 0.0195347, 6.29654)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 1.60482e-08, 1.67347e-08, -7.64544e-12, 1, 6.17001e-09, -5.82077e-11, 0, 1, 0.00234446, 6.00005, 0.0456156)
