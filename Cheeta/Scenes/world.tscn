@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpjoefpe0kold"]
+[gd_scene load_steps=8 format=3 uid="uid://dpjoefpe0kold"]
 
-[ext_resource type="ArrayMesh" uid="uid://dmuwmwc8aoq4" path="res://Assets/Semnopithecus-entellus_USNM-49779_um2_60_0.55_-0.58.obj" id="1_y03pa"]
+[ext_resource type="Script" path="res://Scenes/lower.gd" id="1_5bihv"]
 [ext_resource type="PackedScene" uid="uid://6fv002hffeil" path="res://Scenes/player.tscn" id="2_llk3r"]
-[ext_resource type="ArrayMesh" uid="uid://b7tfx008pvdr7" path="res://Assets/Semnopithecus-entellus_USNM-49779_lm2_60_0.55_-0.58.obj" id="3_ptly3"]
+[ext_resource type="PackedScene" uid="uid://b7tfx008pvdr7" path="res://Assets/Semnopithecus-entellus_USNM-49779_lm2_60_0.55_-0.58.obj" id="3_ptly3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q44wh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,6 +15,13 @@ sky_material = SubResource("ProceduralSkyMaterial_q44wh")
 background_mode = 2
 sky = SubResource("Sky_cb6wi")
 tonemap_mode = 2
+
+[sub_resource type="Curve3D" id="Curve3D_bisr0"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.153429, -0.0143006, -1.5883, 0, 0, 0, 0, 0, 0, -0.172344, 0.316849, -0.0691938, 0, 0, 0, 0, 0, 0, -0.0482455, 0.2909, 1.88721, 0, 0, 0, 0, 0, 0, -0.288106, 0.139866, 3.41065, 0, 0, 0, 0, 0, 0, -0.151358, -0.38918, 4.03457, 0, 0, 0, 0, 0, 0, -0.110535, -0.802366, 2.2208, 0, 0, 0, 0, 0, 0, -0.33224, -0.80007, -0.261957, 0, 0, 0, 0, 0, 0, -0.266499, -0.547029, -1.23365, 0, 0, 0, 0, 0, 0, -0.153429, -0.0143006, -1.5883),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
 
 [node name="world" type="Node3D"]
 transform = Transform3D(1, -0.000393621, 0.000378934, 0.000393996, 0.999999, -0.0010338, -0.000378543, 0.00103395, 0.999999, 0, 0, 0)
@@ -29,19 +36,25 @@ environment = SubResource("Environment_bj6el")
 [node name="teeth" type="Node3D" parent="."]
 transform = Transform3D(1, -1.70814e-11, 2.91038e-11, -7.61702e-12, 1, 0, -2.91038e-11, 0, 1, -2.73174, -2.32831e-10, 1.10961)
 
-[node name="upper" type="Node3D" parent="teeth"]
-
-[node name="Semnopithecus-entellusUsnm-49779Um2600_55-0_59" type="MeshInstance3D" parent="teeth/upper"]
-transform = Transform3D(0.999999, 2.32831e-10, 1.05501e-10, -9.48432e-11, -0.0488497, -0.998805, -1.16415e-10, 0.998806, -0.0488497, 1.57651, 4.84642, -0.744371)
-mesh = ExtResource("1_y03pa")
-skeleton = NodePath("../../..")
+[node name="upper" type="CharacterBody3D" parent="teeth"]
 
 [node name="lower" type="Node3D" parent="teeth"]
+script = ExtResource("1_5bihv")
 
-[node name="Semnopithecus-entellusUsnm-49779Lm2600_55-0_58" type="MeshInstance3D" parent="teeth/lower"]
-transform = Transform3D(-0.99958, -0.000601023, -0.0289465, -0.0289465, 0.0414938, 0.998719, 0.000600874, 0.999138, -0.0414938, 3.89618, -0.00452646, -2.89356)
-mesh = ExtResource("3_ptly3")
-skeleton = NodePath("../../..")
+[node name="Path3D" type="Path3D" parent="teeth/lower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+curve = SubResource("Curve3D_bisr0")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="teeth/lower/Path3D"]
+transform = Transform3D(0.999984, 0, 0, 0, 0.999984, 0, 0, 0, 0.999988, -0.153429, -0.0143006, -1.5883)
+rotation_mode = 0
+use_model_front = true
+
+[node name="Node3D" type="Node3D" parent="teeth/lower/Path3D/PathFollow3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="Semnopithecus-entellus_USNM-49779_lm2_60_0_55_-0_58" parent="teeth/lower/Path3D/PathFollow3D/Node3D" instance=ExtResource("3_ptly3")]
+transform = Transform3D(-0.99993, -8.00355e-11, -0.0124509, 0.00265169, 0.977065, -0.212958, 0.0121652, -0.212974, -0.976987, -0.135841, 0.315012, 1.37804)
 
 [node name="player" parent="." instance=ExtResource("2_llk3r")]
 transform = Transform3D(1, -1.33412e-10, 1.16415e-10, -6.57963e-11, 1, 0, -8.73115e-11, 0, 1, 0.00469702, 1.5672, 6.29654)
