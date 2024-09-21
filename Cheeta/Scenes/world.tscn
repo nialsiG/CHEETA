@@ -1,11 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpjoefpe0kold"]
+[gd_scene load_steps=7 format=3 uid="uid://dpjoefpe0kold"]
 
 [ext_resource type="ArrayMesh" uid="uid://dmuwmwc8aoq4" path="res://Assets/Semnopithecus-entellus_USNM-49779_um2_60_0.55_-0.58.obj" id="1_y03pa"]
 [ext_resource type="PackedScene" uid="uid://6fv002hffeil" path="res://Scenes/player.tscn" id="2_llk3r"]
 [ext_resource type="ArrayMesh" uid="uid://b7tfx008pvdr7" path="res://Assets/Semnopithecus-entellus_USNM-49779_lm2_60_0.55_-0.58.obj" id="3_ptly3"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q44wh"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_cb6wi"]
+sky_material = SubResource("ProceduralSkyMaterial_q44wh")
+
+[sub_resource type="Environment" id="Environment_bj6el"]
+background_mode = 2
+sky = SubResource("Sky_cb6wi")
+tonemap_mode = 2
+
 [node name="world" type="Node3D"]
 transform = Transform3D(1, -0.000393621, 0.000378934, 0.000393996, 0.999999, -0.0010338, -0.000378543, 0.00103395, 0.999999, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 4.69181, 16.2529, -8.12638)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bj6el")
 
 [node name="teeth" type="Node3D" parent="."]
 transform = Transform3D(1, -1.70814e-11, 2.91038e-11, -7.61702e-12, 1, 0, -2.91038e-11, 0, 1, -2.73174, -2.32831e-10, 1.10961)
@@ -25,7 +44,4 @@ mesh = ExtResource("3_ptly3")
 skeleton = NodePath("../../..")
 
 [node name="player" parent="." instance=ExtResource("2_llk3r")]
-transform = Transform3D(1, -1.33412e-10, 1.16415e-10, -6.57963e-11, 1, 0, -8.73115e-11, 0, 1, 0.00469702, 0.0195347, 6.29654)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 1.60482e-08, 1.67347e-08, -7.64544e-12, 1, 6.17001e-09, -5.82077e-11, 0, 1, 0.00234446, 6.00005, 0.0456156)
+transform = Transform3D(1, -1.33412e-10, 1.16415e-10, -6.57963e-11, 1, 0, -8.73115e-11, 0, 1, 0.00469702, 1.5672, 6.29654)
