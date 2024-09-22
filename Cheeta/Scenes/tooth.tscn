@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg12ff4kayco5"]
+
+[ext_resource type="Script" path="res://Scenes/tooth.gd" id="1_f2npo"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_sd8sq"]
+
+[node name="tooth" type="CharacterBody3D"]
+script = ExtResource("1_f2npo")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
+polygon = PackedVector2Array(0, 0, 0, 5, 5, 5, 5, 0, 2.5, 2.5)
+depth = 5.0
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+depth = 5.0
+polygon = PackedVector2Array(0, 0, 0, 5, 5, 5, 5, 0, 2.5, 2.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("ArrayMesh_sd8sq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false

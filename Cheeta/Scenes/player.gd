@@ -17,7 +17,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_camera.rotation.x = clamp(_camera.rotation.x, -PI/6, PI/6)
 
 func _physics_process(delta):
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (transform.basis * Vector3(input_dir.x, input_dir.y, 0)).normalized()
 	
 	if direction:

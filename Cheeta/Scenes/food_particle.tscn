@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhe8fc0f61kr2"]
+
+[ext_resource type="Script" path="res://Scenes/food_particle.gd" id="1_q2npe"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3hmt0"]
+radius = 0.2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_j8wk3"]
+viewport_path = NodePath("sticker/SubViewport")
+
+[node name="food_particle" type="CharacterBody3D"]
+script = ExtResource("1_q2npe")
+initial_size = 3
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 0.2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_3hmt0")
+
+[node name="sticker" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000330448, 0.457386, -0.000211239)
+
+[node name="SubViewport" type="SubViewport" parent="sticker"]
+size = Vector2i(120, 50)
+
+[node name="Label" type="Label" parent="sticker/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Contacts: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="sticker"]
+billboard = 2
+texture = SubResource("ViewportTexture_j8wk3")
