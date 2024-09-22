@@ -5,6 +5,7 @@
 [sub_resource type="ArrayMesh" id="ArrayMesh_sd8sq"]
 
 [node name="tooth" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.57595, 0, 0)
 script = ExtResource("1_f2npo")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]

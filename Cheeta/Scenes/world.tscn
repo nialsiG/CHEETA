@@ -1,9 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpjoefpe0kold"]
+[gd_scene load_steps=14 format=3 uid="uid://dpjoefpe0kold"]
 
 [ext_resource type="Script" path="res://Scenes/lower.gd" id="1_5bihv"]
 [ext_resource type="PackedScene" uid="uid://cg12ff4kayco5" path="res://Scenes/tooth.tscn" id="1_md78a"]
 [ext_resource type="PackedScene" uid="uid://6fv002hffeil" path="res://Scenes/player.tscn" id="2_llk3r"]
-[ext_resource type="PackedScene" uid="uid://dhe8fc0f61kr2" path="res://Scenes/food_particle.tscn" id="4_gu4m8"]
+[ext_resource type="Script" path="res://Scenes/food_manager.gd" id="4_yrnkh"]
+[ext_resource type="Script" path="res://Scenes/teeth_manager.gd" id="5_keoob"]
+[ext_resource type="Script" path="res://Scenes/ui_manager.gd" id="6_0sulf"]
+[ext_resource type="Theme" uid="uid://bl8dmw0snf36c" path="res://Assets/Resources/label_theme_blue.tres" id="7_meqv1"]
 
 [sub_resource type="Gradient" id="Gradient_ow6wo"]
 colors = PackedColorArray(0.1764, 0.4788, 0.63, 1, 1, 0.54, 0.816, 1)
@@ -25,7 +28,7 @@ tonemap_mode = 2
 
 [sub_resource type="Curve3D" id="Curve3D_bisr0"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.269001, 1.00428, -1.11178, 0, 0, 0, 0, 0, 0, -0.269379, 1.00532, -0.111784, 0, 0, 0, 0, 0, 0, -0.270624, -0.930726, 1.0158, 0, 0, 0, 0, 0, 0, -0.271334, -2.99365, 0.892351, 0, 0, 0, 0, 0, 0, -0.272122, -4.99365, 0.894418, 0, 0, 0, 0, 0, 0, -0.37903, -6.91718, -0.605593, 0, 0, 0, 0, 0, 0, -0.270986, -4.99675, -2.10558, 0, 0, 0, 0, 0, 0, -0.270198, -2.99675, -2.10765, 0, 0, 0, 0, 0, 0, -0.26941, -0.996751, -2.10971, 0, 0, 0, 0, 0, 0, -0.269001, 1.00428, -1.11178),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.2, 1.005, 0, 0, 0, 0, 0, 0, 0, 1, -0.931, 0, 0, 0, 0, 0, 0, 0, 0.8, -2.994, 0, 0, 0, 0, 0, 0, 0, 0.8, -4.994, 0, 0, 0, 0, 0, 0, 0, -0.6, -6.917, 0, 0, 0, 0, 0, 0, 0, -2, -4.997, 0, 0, 0, 0, 0, 0, 0, -2, -2.997, 0, 0, 0, 0, 0, 0, 0, -2, -0.997, 0, 0, 0, 0, 0, 0, 0, -1, 1.004, 0, 0, 0, 0, 0, 0, 0, -0.2, 1.005, 0),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 10
@@ -50,33 +53,91 @@ transform = Transform3D(1, -4.78337e-11, 2.91038e-11, -6.19593e-12, 1, 0, -2.910
 transform = Transform3D(1, 1.19655e-11, 0, -3.67208e-11, 1, -1.16415e-10, 0, 1.16415e-10, 1, 0, 0, 0)
 
 [node name="tooth_upper" parent="teeth/upper" instance=ExtResource("1_md78a")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -2.5)
-initial_orientation = Vector3(0, -1.732, 0)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.575954, 0, 0)
 
 [node name="lower" type="Node3D" parent="teeth"]
-transform = Transform3D(1, 1.19655e-11, 0, -3.67208e-11, 1, -1.16415e-10, 0, 1.16415e-10, 1, 0, 0, 0)
+transform = Transform3D(1, 1.19655e-11, 0, -3.67208e-11, 1, -1.16415e-10, 0, 1.16415e-10, 1, 3, 2, -1.16415e-10)
 script = ExtResource("1_5bihv")
 
 [node name="Path3D" type="Path3D" parent="teeth/lower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90346, 1.98751, -1.18994)
+transform = Transform3D(1, -1.88152e-11, 0, -6.30962e-12, 1, 0, 0, 1.16415e-10, 1, -0.00043112, -0.044785, -0.00109065)
 curve = SubResource("Curve3D_bisr0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="teeth/lower/Path3D"]
-transform = Transform3D(0.999984, 0, 0, 0, 0.999984, 0, 0, 0, 0.999988, -0.353879, -6.46466, -0.25271)
+transform = Transform3D(0.999984, 0, 0, 0, 0.999984, 0, 0, 0, 0.999988, -0.864938, -6.55366, 0)
 progress = 9.17647
 rotation_mode = 0
 use_model_front = true
 
 [node name="tooth_lower" parent="teeth/lower/Path3D/PathFollow3D" instance=ExtResource("1_md78a")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 0, 0)
-initial_orientation = Vector3(0, 1.732, 3.14)
+unique_name_in_owner = true
+initial_orientation = Vector3(3.14, 0, 0)
 
-[node name="food_particles" type="Node3D" parent="."]
-transform = Transform3D(1, -1.87299e-11, 0, -6.16751e-12, 1, 0, 0, 1.16415e-10, 1, 0, 0, 0)
+[node name="food_manager" type="Node" parent="."]
+script = ExtResource("4_yrnkh")
 
-[node name="food_particle" parent="food_particles" instance=ExtResource("4_gu4m8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.52694, 1.27763, -2.29022)
-initial_size = 2
+[node name="teeth_manager" type="Node" parent="."]
+script = ExtResource("5_keoob")
 
-[node name="food_particle2" parent="food_particles" instance=ExtResource("4_gu4m8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51752, 1.2383, -2.01594)
+[node name="ui_manager" type="Node" parent="."]
+script = ExtResource("6_0sulf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -967.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = -436.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Label_teeth" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_meqv1")
+text = "Teeth:"
+
+[node name="start_button" type="Button" parent="CanvasLayer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="stop_button" type="Button" parent="CanvasLayer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Stop"
+
+[node name="reset_button" type="Button" parent="CanvasLayer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Reset"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label_food" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_meqv1")
+text = "Food particles:"
+
+[node name="spawn_food_button" type="Button" parent="CanvasLayer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "New  food particle"
+
+[connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer/VBoxContainer/start_button" to="ui_manager" method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer/VBoxContainer/stop_button" to="ui_manager" method="_on_stop_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer/VBoxContainer/reset_button" to="ui_manager" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer/VBoxContainer/spawn_food_button" to="ui_manager" method="_on_spawn_food_button_pressed"]

@@ -10,7 +10,6 @@ viewport_path = NodePath("sticker/SubViewport")
 
 [node name="food_particle" type="CharacterBody3D"]
 script = ExtResource("1_q2npe")
-initial_size = 3
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 radius = 0.2
