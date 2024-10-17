@@ -9,6 +9,8 @@ radius = 0.2
 viewport_path = NodePath("sticker/SubViewport")
 
 [node name="food_particle" type="CharacterBody3D"]
+floor_block_on_wall = false
+floor_max_angle = 0.0
 script = ExtResource("1_q2npe")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
@@ -29,7 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Contacts: 0"
+text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 

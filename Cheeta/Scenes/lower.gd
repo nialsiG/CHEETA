@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var speed = 5.0
+@onready var speed = 5
 @onready var path = $Path3D/PathFollow3D
 @onready var canMove: bool = false
 
